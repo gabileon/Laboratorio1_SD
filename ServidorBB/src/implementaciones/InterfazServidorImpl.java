@@ -62,5 +62,10 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
             System.out.print("Cliente no estaba registrado");
         }
     }
+
+    @Override
+    public Vector<String> ClientePerfil(int id) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }
