@@ -13,7 +13,7 @@ public class Cliente extends SQLQuery {
     
     public Vector<String> obtenerPerfil(int idCliente) {
     
-    
+    //hola
         Vector<String> resultado = new Vector();
         try {
             Class.forName(SQLQuery.getDriver());
