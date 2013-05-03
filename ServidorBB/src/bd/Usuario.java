@@ -114,4 +114,33 @@ public void conec (){
         return -1;
     }
 
+    public Vector<String> obtenerUser(int id_usuario) {
+        ResultSet rs = null;
+        Vector<String> resultado = new Vector();;
+        
+        try {
+            Class.forName(SQLQuery.getDriver());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
+            
+            this.consulta = conn.prepareStatement("SELECT * FROM USUARIO WHERE ID_USUARIO = '"+id_usuario+"'");
+            this.datos = this.consulta.executeQuery();
+            if (this.datos.next()) {
+                resultado.add(datos.getString(2));
+                resultado.add(datos.getString(3));
+            }
+            return resultado;
+        } catch (SQLException ex) {
+            try {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                conn.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return resultado;
+    }
 }
