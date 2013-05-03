@@ -22,7 +22,6 @@ public class ConexionRMI {
             return true;
         }
         catch(Exception e){
-            e.printStackTrace();
             return false;
         }
     }
@@ -32,7 +31,6 @@ public class ConexionRMI {
             registry.list();
         }
         catch(RemoteException e){
-            e.printStackTrace();
         }
     }
     //Con esto no es necesario hacer un lookup al objeto remoto cada vez que deseemos usarlo
