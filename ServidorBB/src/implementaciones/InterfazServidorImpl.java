@@ -27,9 +27,17 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
     
+    @Override
     public int obtenerId (String nombre, String pass) throws RemoteException {
         int hayDatos;
         hayDatos = user.obtenerId(nombre, pass);
+        return hayDatos;
+    }
+    
+    @Override
+    public Vector<String> ClienteUser(int id) throws RemoteException {
+        Vector<String> hayDatos;
+        hayDatos = user.obtenerUser(id);
         return hayDatos;
     }
     
@@ -63,9 +71,9 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         }
     }
 
-    @Override
+    /*@Override
     public Vector<String> ClientePerfil(int id) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+        
+    }*/
     
 }

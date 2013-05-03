@@ -235,16 +235,16 @@ public final class VistaPerfilCliente extends javax.swing.JFrame {
     public void mostrarInfo () throws RemoteException {
         Vector <String> resultados = new Vector();
         Vector <String> resultados2 = new Vector();
-        resultados = conexion.getServidor().ClientePerfil(idCliente);
+        //resultados = conexion.getServidor().ClientePerfil(idCliente);
         resultados2 = conexion.getServidor().ClienteUser(idCliente);
         
         //Se muestra en las etiquetas la información que corresponde
-        jLabelNombre.setText(resultados.elementAt(1));
+        /*jLabelNombre.setText(resultados.elementAt(1));
         jLabelApellido.setText(resultados.elementAt(2));
         jLabelTelefono.setText(resultados.elementAt(3));
         jLabelMail.setText(resultados.elementAt(4));
         jLabelDireccion.setText(resultados.elementAt(5)+ " "+resultados.elementAt(6));
-        
+        */
         //Se muestran los campos de la información de usuario
         jLabelUser.setText(resultados2.elementAt(0));
         jLabelPass.setText(resultados2.elementAt(1));
