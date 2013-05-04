@@ -143,4 +143,26 @@ public void conec (){
         }
         return resultado;
     }
+    
+    public void cambiarPass(int idUsuario, String pass) {
+        try {
+            Class.forName(SQLQuery.getDriver());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
+            
+            Statement st = conn.createStatement();
+            st.executeUpdate("UPDATE USUARIO SET PASSWORD='"+pass +"' WHERE ID_USUARIO='"+ idUsuario+"'");
+        } catch (SQLException ex) {
+            try {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                conn.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
+    
 }

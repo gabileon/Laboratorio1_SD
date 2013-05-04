@@ -41,6 +41,10 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
     
+    public void cambioPass(int idUsuario, String pass) throws RemoteException {
+        user.cambiarPass(idUsuario, pass);
+    }
+    
     @Override
     public synchronized void registrarCliente(InterfazCliente cliente, String Nombre) throws RemoteException{
         if (!(clientes.contains(cliente))) {

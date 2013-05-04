@@ -54,7 +54,7 @@ public class VistaPassCliente extends javax.swing.JFrame {
 
         jTextFieldPass2.setText("jTextField2");
 
-        jButtonPass.setText("Cambiar contrasña");
+        jButtonPass.setText("Cambiar contraseña");
         jButtonPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonPassMouseClicked(evt);
