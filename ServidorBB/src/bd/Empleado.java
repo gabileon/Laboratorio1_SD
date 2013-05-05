@@ -41,4 +41,41 @@ public class Empleado extends SQLQuery{
         }
     return resultado;
     }
+    
+    public Vector<String> obtenerCliente(int idEmpleado) {
+        Vector<String> resultado = new Vector();
+        
+        try {
+            Class.forName(SQLQuery.getDriver());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
+            
+            this.consulta = this.conn.prepareStatement("select cliente.nombre, cliente.apellido, cliente.telefono, cliente.email, cliente.direccion, cliente.numero_direccion from empleado inner join sucursal on empleado.id_sucursal = sucursal.id_sucursal inner join cliente on sucursal.id_sucursal = cliente.id_sucursal where empleado.id_empleado ='"+idEmpleado+"'");
+            this.datos = this.consulta.executeQuery();
+            while (this.datos.next()) {
+                resultado.add(datos.getString("nombre"));
+                resultado.add(datos.getString("apellido"));
+                resultado.add(datos.getString("telefono"));
+                resultado.add(datos.getString("email"));
+                resultado.add(datos.getString("direccion"));
+                resultado.add(datos.getString("numero_direccion"));
+            }
+            return resultado;
+        
+            } catch (SQLException ex) {
+            try {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                conn.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return resultado;
+    }
+    
 }

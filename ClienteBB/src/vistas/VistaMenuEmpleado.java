@@ -34,6 +34,11 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
         jLabel2.setText("Menú del empleado");
 
         jButtonArriendos.setText("Arriendos");
+        jButtonArriendos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonArriendosMouseClicked(evt);
+            }
+        });
         jButtonArriendos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonArriendosActionPerformed(evt);
@@ -137,6 +142,12 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jToggleButtonPerfilMouseClicked
+
+    private void jButtonArriendosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArriendosMouseClicked
+        VistaClienteEmpleado vista = new VistaClienteEmpleado(this.idCliente, conexion);
+        vista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonArriendosMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
