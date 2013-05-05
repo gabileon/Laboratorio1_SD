@@ -14,6 +14,7 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
     private ArrayList clientes = new ArrayList();
     Usuario user = new Usuario();
     Cliente cli = new Cliente();
+    Empleado emp = new Empleado();
 
     public InterfazServidorImpl() throws RemoteException{
         super();
@@ -43,6 +44,18 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
     
     public void cambioPass(int idUsuario, String pass) throws RemoteException {
         user.cambiarPass(idUsuario, pass);
+    }
+    
+    public Vector<String> EmpleadoUser(int id) throws RemoteException {
+        Vector<String> hayDatos;
+        hayDatos = user.obtenerUser(id);
+        return hayDatos;
+    }
+    
+    public Vector<String> EmpleadoPerfil(int id) throws RemoteException {
+        Vector<String> hayDatos;
+        hayDatos = emp.obtenerPerfil(id);
+        return hayDatos;
     }
     
     @Override

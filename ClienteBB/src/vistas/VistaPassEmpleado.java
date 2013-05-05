@@ -7,24 +7,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class VistaPassCliente extends javax.swing.JFrame {
-    int idCliente;
+public class VistaPassEmpleado extends javax.swing.JFrame {
+    int idEmpleado;
     private ConexionRMI conexion = new ConexionRMI();
     
-    public VistaPassCliente() {
+    public VistaPassEmpleado() {
         initComponents();
     }
 
-    public VistaPassCliente(int id, ConexionRMI conexion) {
+    public VistaPassEmpleado(int id, ConexionRMI conexion) {
         initComponents();
         
-        this.idCliente = id;
+        this.idEmpleado = id;
         this.conexion = conexion;
         
         jTextFieldPass1.setText("");
         jTextFieldPass2.setText("");
     }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,7 +45,7 @@ public class VistaPassCliente extends javax.swing.JFrame {
 
         jTextFieldPass1.setText("jTextField1");
 
-        jLabel3.setText("Introdusca de nuevo su contraseña:");
+        jLabel3.setText("Introdusca de nuevo la contraseña:");
 
         jTextFieldPass2.setText("jTextField2");
 
@@ -54,11 +53,6 @@ public class VistaPassCliente extends javax.swing.JFrame {
         jButtonPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonPassMouseClicked(evt);
-            }
-        });
-        jButtonPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPassActionPerformed(evt);
             }
         });
 
@@ -78,33 +72,38 @@ public class VistaPassCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonPass)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButtonVolver)
+                                        .addGap(109, 109, 109))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jTextFieldPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jButtonVolver)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jTextFieldPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jTextFieldPass2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel2))
+                                    .addComponent(jLabel1))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonPass)))
+                        .addComponent(jLabel3)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jTextFieldPass2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldPass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,8 +114,8 @@ public class VistaPassCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonPass)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,32 +132,28 @@ public class VistaPassCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonPassActionPerformed
-
     private void jButtonPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonPassMouseClicked
         try {
             this.cambioPass();
         } catch (RemoteException ex) {
-            Logger.getLogger(VistaPassCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaPassEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonPassMouseClicked
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        VistaPerfilCliente vista = new VistaPerfilCliente(this.idCliente, conexion);
+        VistaPerfilEmpleado vista = new VistaPerfilEmpleado(this.idEmpleado, conexion);
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
-    public final void cambioPass () throws RemoteException {
+        public final void cambioPass () throws RemoteException {
         String pass1 = this.jTextFieldPass1.getText();
         String pass2 = this.jTextFieldPass2.getText();
         
         if (pass1.equals(pass2)) {
-            conexion.getServidor().cambioPass(idCliente, pass1);
+            conexion.getServidor().cambioPass(idEmpleado, pass1);
             JOptionPane.showMessageDialog(this, "Se ha cambiado la contraseña exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            VistaMenuCliente vista = new VistaMenuCliente(this.idCliente, conexion);
+            VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idEmpleado, conexion);
             vista.setVisible(true);
             dispose();
         }
@@ -183,20 +178,20 @@ public class VistaPassCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaPassCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaPassEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaPassCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaPassEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaPassCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaPassEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaPassCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaPassEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaPassCliente().setVisible(true);
+                new VistaPassEmpleado().setVisible(true);
             }
         });
     }

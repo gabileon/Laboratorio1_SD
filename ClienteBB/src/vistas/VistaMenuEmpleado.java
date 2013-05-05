@@ -54,6 +54,11 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
         jButton1.setText("Chat");
 
         jToggleButtonPerfil.setText("Perfil");
+        jToggleButtonPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButtonPerfilMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,7 +86,7 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(jToggleButtonPerfil)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,6 +131,12 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonRegistroMouseClicked
+
+    private void jToggleButtonPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButtonPerfilMouseClicked
+        VistaPerfilEmpleado vista = new VistaPerfilEmpleado(this.idCliente, conexion);
+        vista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jToggleButtonPerfilMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
