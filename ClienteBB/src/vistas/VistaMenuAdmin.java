@@ -3,18 +3,30 @@
  * and open the template in the editor.
  */
 package vistas;
+import clientebb.*;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 /**
  *
  * @author Macarena
  */
 public class VistaMenuAdmin extends javax.swing.JFrame {
-    private static VistaMenuAdmin propiaVista;
+    int idAdmin;
+    ConexionRMI conexion = new ConexionRMI();
     
     public VistaMenuAdmin() {
         initComponents();
     }
     
+    public VistaMenuAdmin(int id, ConexionRMI obj) {
+        initComponents();
+        this.idAdmin = id;
+        this.conexion = obj;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,12 +140,6 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static VistaMenuAdmin getInstanciaVista(){
-        if (propiaVista == null){
-            propiaVista = new VistaMenuAdmin();
-        }
-        return propiaVista;
-    }
     
     private void jButtonActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActivarActionPerformed
         // TODO add your handling code here:
