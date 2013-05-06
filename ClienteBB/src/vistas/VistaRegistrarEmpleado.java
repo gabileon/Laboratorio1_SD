@@ -1,9 +1,13 @@
 package vistas;
 
 import clientebb.*;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class VistaRegistrarEmpleado extends javax.swing.JFrame {
-    int idCliente;
+    int idEmpleado;
     ConexionRMI conexion = new ConexionRMI();
 
     public VistaRegistrarEmpleado() {
@@ -12,11 +16,11 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
     
     public VistaRegistrarEmpleado (int id, ConexionRMI obj) {
         initComponents();
-        this.idCliente = id;
+        this.idEmpleado = id;
         this.conexion = obj;
         
         jTextFieldUsuario.setText("");
-        jTextFieldPass1.setText("");
+        jPasswordFieldPass1.setText("");
         jPasswordFieldPass2.setText("");
         jTextFieldNumero.setText("");
         jTextFieldDireccion.setText("");
@@ -46,7 +50,6 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextFieldUsuario = new javax.swing.JTextField();
-        jTextFieldPass1 = new javax.swing.JTextField();
         jPasswordFieldPass2 = new javax.swing.JPasswordField();
         jTextFieldNumero = new javax.swing.JTextField();
         jTextFieldDireccion = new javax.swing.JTextField();
@@ -56,6 +59,7 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
         jTextFieldNombre = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
         jButtonVolver = new javax.swing.JButton();
+        jPasswordFieldPass1 = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -96,8 +100,6 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
 
         jTextFieldUsuario.setText("jTextField1");
 
-        jTextFieldPass1.setText("jTextField2");
-
         jPasswordFieldPass2.setText("jPasswordField1");
 
         jTextFieldNumero.setText("jTextField3");
@@ -113,6 +115,14 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
         jTextFieldNombre.setText("jTextField8");
 
         jButtonAgregar.setText("Agregar cliente");
+        jButtonAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAgregarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonAgregarMouseEntered(evt);
+            }
+        });
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,6 +130,8 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
                 jButtonVolverMouseClicked(evt);
             }
         });
+
+        jPasswordFieldPass1.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,8 +157,8 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPasswordFieldPass2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldPass1)
-                                    .addComponent(jTextFieldUsuario)))
+                                    .addComponent(jTextFieldUsuario)
+                                    .addComponent(jPasswordFieldPass1)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel5))
@@ -189,7 +201,7 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldPass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordFieldPass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
@@ -244,14 +256,54 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idCliente, conexion);
+        VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idEmpleado, conexion);
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButtonAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAgregarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAgregarMouseEntered
+
+    private void jButtonAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAgregarMouseClicked
+        this.nuevoCliente();
+    }//GEN-LAST:event_jButtonAgregarMouseClicked
+    
+    public void nuevoCliente() {
+        String pass1 = this.jPasswordFieldPass1.getText();
+        String pass2 = this.jPasswordFieldPass2.getText();
+        
+        if (pass1.equals(pass2)) {
+            String user = this.jTextFieldUsuario.getText();
+            try {
+                String rol = "3";
+                conexion.getServidor().nuevoUser(user, pass1, rol);
+                int id = conexion.getServidor().obtenerId(user, pass1);
+                System.out.println(id);
+                String apellido = jTextFieldApellido.getText();
+                String direc = jTextFieldDireccion.getText();
+                String mail = jTextFieldMail.getText();
+                String nombre = jTextFieldNombre.getText();
+                String num = jTextFieldNumero.getText();
+                String fono = jTextFieldTelefono.getText();
+                
+                conexion.getServidor().crearCliente(id, idEmpleado, nombre, apellido, fono, mail, direc, num);
+            } catch (RemoteException ex) {
+                Logger.getLogger(VistaRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Se ha cambiado la contraseña exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idEmpleado, conexion);
+            vista.setVisible(true);
+            dispose();
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden, vuelva a ingresarlas.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            jPasswordFieldPass1.setText("");
+            jPasswordFieldPass2.setText("");
+        }
+        
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -300,6 +352,7 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordFieldPass1;
     private javax.swing.JPasswordField jPasswordFieldPass2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextFieldApellido;
@@ -307,7 +360,6 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldMail;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldNumero;
-    private javax.swing.JTextField jTextFieldPass1;
     private javax.swing.JTextField jTextFieldTelefono;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables

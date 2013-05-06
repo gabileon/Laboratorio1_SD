@@ -1,5 +1,5 @@
 package Vista;
-//Prueba
+
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;

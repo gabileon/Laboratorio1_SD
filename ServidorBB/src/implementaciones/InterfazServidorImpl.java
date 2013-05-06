@@ -66,6 +66,10 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
     
+    public void nuevoUser(String usuario, String pass, String rol) throws RemoteException {
+        user.crearUser(usuario, pass, rol);
+    }
+    
     @Override
     public synchronized void registrarCliente(InterfazCliente cliente, String Nombre) throws RemoteException{
         if (!(clientes.contains(cliente))) {

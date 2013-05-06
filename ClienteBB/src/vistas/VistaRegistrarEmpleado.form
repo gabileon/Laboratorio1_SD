@@ -78,8 +78,8 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPasswordFieldPass2" pref="131" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldPass1" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTextFieldUsuario" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jPasswordFieldPass1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -135,7 +135,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldPass1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPasswordFieldPass1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -253,11 +253,6 @@
             <Property name="text" type="java.lang.String" value="jTextField1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldPass1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField2"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordFieldPass2">
           <Properties>
             <Property name="text" type="java.lang.String" value="jPasswordField1"/>
@@ -297,6 +292,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar cliente"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonAgregarMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonAgregarMouseEntered"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonVolver">
           <Properties>
@@ -305,6 +304,11 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonVolverMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jPasswordFieldPass1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -165,4 +165,25 @@ public void conec (){
         }
     }
     
+    public void crearUser(String user, String pass, String rol) {
+        try {
+            Class.forName(SQLQuery.getDriver());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
+            
+            Statement st = conn.createStatement();
+            st.executeUpdate("INSERT INTO USUARIO (username, password, rol) VALUES ('"+user+"','"+pass+"','"+rol+"')");
+        } catch (SQLException ex) {
+            try {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                conn.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
+    
 }
