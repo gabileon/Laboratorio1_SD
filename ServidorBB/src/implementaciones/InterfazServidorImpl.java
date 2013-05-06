@@ -59,7 +59,7 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
     
-    @Override
+    @Override //Le entrega al empleado los clientes de la sucursal
     public Vector<String> EmpleadoCliente (int idEmpleado) throws RemoteException {
         Vector<String> hayDatos;
         hayDatos = emp.obtenerCliente(idEmpleado);

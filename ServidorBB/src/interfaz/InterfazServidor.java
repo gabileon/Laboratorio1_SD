@@ -6,7 +6,7 @@ import java.util.*;
 public interface InterfazServidor extends Remote{
     public int inicioSesion(String nombre, String pass) throws RemoteException;
     public int obtenerId(String nombre, String pass) throws RemoteException;
-    //public Vector<String> ClientePerfil(int id) throws RemoteException;
+    public Vector<String> ClientePerfil(int id) throws RemoteException;
     public Vector<String> EmpleadoPerfil(int id) throws RemoteException;
     public Vector<String> ClienteUser(int id) throws RemoteException;
     public Vector<String> EmpleadoUser(int id) throws RemoteException;
