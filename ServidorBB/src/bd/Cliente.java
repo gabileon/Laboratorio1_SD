@@ -53,31 +53,7 @@ public class Cliente extends SQLQuery {
     
     
 }
-/*    
-    public Vector<String> obtenerPerfil(int idCliente) {
-        Vector<String> resultado = new Vector();
-
-        try {
-            this.conectar("127.0.0.1", "bd_bb", "root", "maca");
-            this.consulta = this.conn.prepareStatement("SELECT * FROM CLIENTE WHERE ID_CLIENTE = '"+idCliente+"'");
-            this.datos = this.consulta.executeQuery();
-            this.datos.next();
-            resultado.add(datos.getString(2));
-            resultado.add(datos.getString(3));
-            resultado.add(datos.getString(4));
-            resultado.add(datos.getString(5));
-            resultado.add(datos.getString(6));
-            resultado.add(datos.getString(7));
-            resultado.add(datos.getString(8));
-            return resultado;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return resultado;
-    }
+/*
     
     public Vector<String> obtenerArriendo(int idCliente) {
         Vector<String> resultado = new Vector();
