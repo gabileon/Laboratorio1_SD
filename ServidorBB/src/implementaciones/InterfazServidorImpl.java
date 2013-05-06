@@ -103,5 +103,13 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         hayDatos = cli.obtenerPerfil(id);
         return hayDatos;
     }
+    
+     public Vector<String> ClienteArriendo (int id) throws RemoteException {
+        Vector<String> hayDatos;
+        hayDatos = cli.obtenerArriendo(id);
+        return hayDatos;
+    }
+
+
 }
     

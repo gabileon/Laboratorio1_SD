@@ -50,7 +50,7 @@ public class VistaArriendoCliente extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Pélícula", "Fecha arriendo", "Fecha devolución", "Valor"
+                "Película","Fecha arriendo","Fecha devolución","Valor"
             }
         ));
         jScrollPane1.setViewportView(jTableArriendo);
@@ -82,7 +82,7 @@ public class VistaArriendoCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(jButtonVolver)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
