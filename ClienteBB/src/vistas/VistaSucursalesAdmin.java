@@ -154,7 +154,7 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
     
-    
+    //
     public void mostrarSucursal () throws RemoteException {
                  
           
