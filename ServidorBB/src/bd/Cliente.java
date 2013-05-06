@@ -32,8 +32,8 @@ public class Cliente extends SQLQuery {
                 resultado.add(datos.getString(4));
                 resultado.add(datos.getString(5));
                 resultado.add(datos.getString(6));
-                resultado.add(datos.getString(7));
-                resultado.add(datos.getString(8));
+              //  resultado.add(datos.getString(7));
+              //  resultado.add(datos.getString(8));
             return resultado;
             }
             
