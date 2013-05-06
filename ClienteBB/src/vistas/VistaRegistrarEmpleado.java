@@ -291,7 +291,7 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
             } catch (RemoteException ex) {
                 Logger.getLogger(VistaRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(this, "Se ha cambiado la contraseña exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Se ha registrado un nuevo cliente exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idEmpleado, conexion);
             vista.setVisible(true);
             dispose();

@@ -94,13 +94,14 @@ public class Cliente extends SQLQuery {
             conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
             
             Statement st = conn.createStatement();
-            this.consulta = conn.prepareStatement("select id_sucursal from empleado where id_empledo ='"+idEmpleado+"'");
-            this.datos = this.consulta.executeQuery();    
+            this.consulta = conn.prepareStatement("select id_sucursal from empleado where id_empleado ='"+idEmpleado+"'");
+            this.datos = this.consulta.executeQuery();
+            int idSucursal = 0;
             while (this.datos.next()) {
-                    resultado.add(datos.getString("id_sucursal"));
+                    idSucursal = datos.getInt("id_sucursal");
                 }
             System.out.println();
-            //st.executeUpdate("INSERT INTO CLIENTE (id_cliente, id_sucursal, nombre, apellido, telefono, email, direccion, numero_direccion) VALUES ('"+user+"','"+pass+"','"+rol+"')");
+            st.executeUpdate("INSERT INTO CLIENTE (id_cliente, id_sucursal, nombre, apellido, telefono, email, direccion, numero_direccion) VALUES ('"+id+"','"+idSucursal+"','"+ nombre+"','"+apellido+"','"+fono+"','"+mail+"','"+direc+"','"+num+"')");
         } catch (SQLException ex) {
             try {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
