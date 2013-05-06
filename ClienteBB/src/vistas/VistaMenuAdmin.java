@@ -15,6 +15,8 @@ import java.util.logging.Logger;
  * @author Macarena
  */
 public class VistaMenuAdmin extends javax.swing.JFrame {
+
+  
     int idAdmin;
     ConexionRMI conexion = new ConexionRMI();
     
@@ -52,6 +54,11 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         jLabel1.setText("Menú del Administrador");
 
         jButtonSucursales.setText("Sucursales");
+        jButtonSucursales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSucursalesActionPerformed(evt);
+            }
+        });
 
         jButtonEmpleados.setText("Empleados");
 
@@ -98,7 +105,7 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +151,11 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     private void jButtonActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActivarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonActivarActionPerformed
+
+    private void jButtonSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSucursalesActionPerformed
+        // Botón que nos lleva a la vista que nos muestra todas las sucursales que hay
+        //Además si desea agregar una sucursal debe entrar a esta opción    
+    }//GEN-LAST:event_jButtonSucursalesActionPerformed
 
     /**
      * @param args the command line arguments
