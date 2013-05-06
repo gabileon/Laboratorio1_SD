@@ -155,6 +155,12 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     private void jButtonSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSucursalesActionPerformed
         // Botón que nos lleva a la vista que nos muestra todas las sucursales que hay
         //Además si desea agregar una sucursal debe entrar a esta opción    
+        VistaSucursalesAdmin vista = new VistaSucursalesAdmin(this.idAdmin, conexion);
+        vista.setVisible(true);
+        dispose();
+        
+        
+        
     }//GEN-LAST:event_jButtonSucursalesActionPerformed
 
     /**

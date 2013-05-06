@@ -117,6 +117,12 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
 
+          public Vector<String> mostrarSucursales (int id) throws RemoteException {
+        Vector<String> hayDatos;
+        hayDatos = cli.obtenerArriendo(id);
+        return hayDatos;
+    }
+     
 
 }
     

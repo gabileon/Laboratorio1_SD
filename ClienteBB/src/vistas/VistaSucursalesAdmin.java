@@ -4,19 +4,43 @@
  */
 package vistas;
 
-import clientebb.ConexionRMI;
+import clientebb.*;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import vistas.*;
+import java.util.*;
 
 /**
  *
  * @author Gabriela
  */
 public class VistaSucursalesAdmin extends javax.swing.JFrame {
-
+  int idAdmin;
+    private ConexionRMI conexion = new ConexionRMI();
     /**
      * Creates new form VistaSucursalesAdmin
-     */
-    public VistaSucursalesAdmin() {
+     */    public VistaSucursalesAdmin() {
         initComponents();
+    }
+
+    VistaSucursalesAdmin(int idAdmin, ConexionRMI conexion) {
+       
+         initComponents();
+        
+        this.idAdmin = idAdmin;
+        this.conexion = conexion;
+        
+        try {
+            this.mostrarSucursal();
+        } catch (RemoteException ex) {
+            Logger.getLogger(VistaPerfilCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        
+        
     }
 
    
@@ -129,7 +153,28 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    
+    public void mostrarSucursal () throws RemoteException {
+                 
+          
+        Vector <String> resultados = new Vector();
+        
+       resultados = conexion.getServidor().
+      
+        /*
+        //Se muestra en las etiquetas la información que corresponde
+        jLabelNombre.setText(resultados.elementAt(1));
+        jLabelApellido.setText(resultados.elementAt(2));
+        jLabelTelefono.setText(resultados.elementAt(3));
+        jLabelMail.setText(resultados.elementAt(4));
+        jLabelDireccion.setText(resultados.elementAt(5)+ " "+resultados.elementAt(6));
+       
+        //Se muestran los campos de la información de usuario
+        jLabelUser.setText(resultados2.elementAt(0));
+        jLabelPass.setText(resultados2.elementAt(1));
+    */
+              }
     /**
      * @param args the command line arguments
      */
