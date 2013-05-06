@@ -84,6 +84,7 @@ public class Cliente extends SQLQuery {
     }
     
     public void crearCliente(int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num) {
+        Vector<String> resultado = new Vector();
         try {
             Class.forName(SQLQuery.getDriver());
         } catch (ClassNotFoundException ex) {
@@ -93,7 +94,13 @@ public class Cliente extends SQLQuery {
             conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
             
             Statement st = conn.createStatement();
-            //st.executeUpdate("INSERT INTO USUARIO (username, password, rol) VALUES ('"+user+"','"+pass+"','"+rol+"')");
+            this.consulta = conn.prepareStatement("select id_sucursal from empleado where id_empledo ='"+idEmpleado+"'");
+            this.datos = this.consulta.executeQuery();    
+            while (this.datos.next()) {
+                    resultado.add(datos.getString("id_sucursal"));
+                }
+            System.out.println();
+            //st.executeUpdate("INSERT INTO CLIENTE (id_cliente, id_sucursal, nombre, apellido, telefono, email, direccion, numero_direccion) VALUES ('"+user+"','"+pass+"','"+rol+"')");
         } catch (SQLException ex) {
             try {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);

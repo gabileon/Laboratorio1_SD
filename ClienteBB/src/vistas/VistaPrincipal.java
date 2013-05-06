@@ -144,7 +144,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 int rol = conexion.getServidor().inicioSesion(Nombre, Pass);
                 if (rol == 1) {
                     id2 = conexion.getServidor().obtenerId(Nombre, Pass);
-                    VistaMenuAdmin.getInstanciaVista().setVisible(true);
+                    VistaMenuAdmin vista = new VistaMenuAdmin(id2, conexion);
+                    vista.setVisible(true);
+                    dispose();
                 }
                 else if (rol == 2) {
                     id2 = conexion.getServidor().obtenerId(Nombre, Pass);
