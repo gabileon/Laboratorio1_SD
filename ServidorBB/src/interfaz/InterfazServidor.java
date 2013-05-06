@@ -14,7 +14,6 @@ public interface InterfazServidor extends Remote{
     public void cambioPass(int idUsuario, String pass) throws RemoteException;
     public void nuevoUser(String user, String pass, String rol) throws RemoteException;
     public Vector<String> EmpleadoCliente (int idEmpleado) throws RemoteException;
-    public void crearCliente(int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num);
     public void registrarCliente(InterfazCliente cliente, String Nombre) throws RemoteException;
     public void desregistrarCliente(InterfazCliente cliente, String Nombre) throws RemoteException;
     public Vector<String> mostrarSucursales (int id) throws RemoteException;
