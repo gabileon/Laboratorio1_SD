@@ -100,6 +100,9 @@ public class Cliente extends SQLQuery {
                     resultado.add(datos.getString("id_sucursal"));
                 }
             System.out.println();
+            //SELECT  `ID_SUCURSAL` 
+//FROM  `empleado` 
+//WHERE  `ID_EMPLEADO` =  '2'
             //st.executeUpdate("INSERT INTO CLIENTE (id_cliente, id_sucursal, nombre, apellido, telefono, email, direccion, numero_direccion) VALUES ('"+user+"','"+pass+"','"+rol+"')");
         } catch (SQLException ex) {
             try {
