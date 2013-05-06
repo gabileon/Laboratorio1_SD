@@ -160,7 +160,7 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
           
         Vector <String> resultados = new Vector();
         
-       resultados = conexion.getServidor().
+       //resultados = conexion.getServidor().
       
         /*
         //Se muestra en las etiquetas la información que corresponde
