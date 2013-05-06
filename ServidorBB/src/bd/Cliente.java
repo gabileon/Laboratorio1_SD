@@ -83,10 +83,6 @@ public class Cliente extends SQLQuery {
     return resultado;
     }
     
-    public void crearCliente (int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num) {
-        
-    }
-    
 }
  
     /* 
