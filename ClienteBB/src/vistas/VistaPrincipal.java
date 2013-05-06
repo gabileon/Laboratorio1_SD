@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+//dsds
 public class VistaPrincipal extends javax.swing.JFrame {
     public int id;
     private ConexionRMI conexion = new ConexionRMI();
