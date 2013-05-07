@@ -66,6 +66,7 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
     
+    @Override
     public void nuevoUser(String usuario, String pass, String rol) throws RemoteException {
         user.crearUser(usuario, pass, rol);
     }
@@ -100,6 +101,7 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         }
     }
 
+    @Override
     public Vector<String> ClientePerfil(int id) throws RemoteException {
         
         Vector<String> hayDatos;
@@ -107,16 +109,18 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
     
-    public void crearCliente(int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num) {
-        cli.crearCliente(id, idEmpleado, nombre, apellido, fono, mail, direc, num);
+    public void crearCliente(int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num) throws RemoteException {
+        cli.nuevoCliente(id, idEmpleado, nombre, apellido, fono, mail, direc, num);
     }
     
+    @Override
      public Vector<String> ClienteArriendo (int id) throws RemoteException {
         Vector<String> hayDatos;
         hayDatos = cli.obtenerArriendo(id);
         return hayDatos;
     }
 
+    @Override
           public Vector<String> mostrarSucursales (int id) throws RemoteException {
         Vector<String> hayDatos;
         hayDatos = cli.obtenerArriendo(id);

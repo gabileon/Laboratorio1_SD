@@ -67,9 +67,9 @@ public class Cliente extends SQLQuery {
                 resultado.add(datos.getString("fecha_arriendo"));
                 resultado.add(datos.getString("fecha_entrega"));
                 resultado.add(datos.getString("valor"));
-            }
-            return resultado;
-        
+        }
+        return resultado;
+
          } catch (SQLException ex) {
             try {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,7 +83,7 @@ public class Cliente extends SQLQuery {
     return resultado;
     }
     
-    public void crearCliente(int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num) {
+    public void nuevoCliente(int id, int idEmpleado, String nombre, String apellido, String fono, String mail, String direc, String num) {
         Vector<String> resultado = new Vector();
         try {
             Class.forName(SQLQuery.getDriver());
@@ -94,16 +94,15 @@ public class Cliente extends SQLQuery {
             conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
             
             Statement st = conn.createStatement();
-            this.consulta = conn.prepareStatement("select id_sucursal from empleado where id_empledo ='"+idEmpleado+"'");
-            this.datos = this.consulta.executeQuery();    
+            this.consulta = conn.prepareStatement("SELECT id_sucursal FROM empleado WHERE id_empleado ='"+idEmpleado+"'");
+            this.datos = this.consulta.executeQuery();
+            
+            int idSucursal = 0;
             while (this.datos.next()) {
-                    resultado.add(datos.getString("id_sucursal"));
+                    idSucursal = datos.getInt("id_sucursal");
                 }
-            System.out.println();
-            //SELECT  `ID_SUCURSAL` 
-//FROM  `empleado` 
-//WHERE  `ID_EMPLEADO` =  '2'
-            //st.executeUpdate("INSERT INTO CLIENTE (id_cliente, id_sucursal, nombre, apellido, telefono, email, direccion, numero_direccion) VALUES ('"+user+"','"+pass+"','"+rol+"')");
+            Statement sta = conn.createStatement();
+            sta.executeUpdate("INSERT INTO CLIENTE (id_cliente, id_sucursal, nombre, apellido, telefono, email, direccion, numero_direccion) VALUES ('"+id+"','"+idSucursal+"','"+nombre+"','"+apellido+"','"+fono+"','"+mail+"','"+direc+"','"+num+"')");
         } catch (SQLException ex) {
             try {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);

@@ -279,7 +279,7 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
                 String rol = "3";
                 conexion.getServidor().nuevoUser(user, pass1, rol);
                 int id = conexion.getServidor().obtenerId(user, pass1);
-                System.out.println(id);
+                
                 String apellido = jTextFieldApellido.getText();
                 String direc = jTextFieldDireccion.getText();
                 String mail = jTextFieldMail.getText();
