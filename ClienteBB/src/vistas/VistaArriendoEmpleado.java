@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VistaArriendoEmpleado extends javax.swing.JFrame {
-    int idCliente;
+    int idEmpleado;
     ConexionRMI conexion = new ConexionRMI();
     
     public VistaArriendoEmpleado() {
@@ -16,10 +16,15 @@ public class VistaArriendoEmpleado extends javax.swing.JFrame {
     
     public VistaArriendoEmpleado (int id, ConexionRMI obj) {
         initComponents();
-        this.idCliente = id;
+        this.idEmpleado = id;
         this.conexion = obj;
         
         jLabelAviso.setVisible(false);
+        try {
+            this.mostrarArriendo();
+        } catch (RemoteException ex) {
+            Logger.getLogger(VistaArriendoEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -114,8 +119,37 @@ public class VistaArriendoEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void mostrarArriendo () throws RemoteException {
+        Vector <String> resultados = new Vector();
+        resultados = conexion.getServidor().EmpleadoArriendo(idEmpleado);
+        Object datos[]=new Object[7];
+        
+        if (!resultados.isEmpty()) {
+            String dato;
+            int i;
+            int j;
+            int cont;
+            i = 0;
+            j = 0;
+            cont = 1;
+            while (!resultados.isEmpty()) {
+                for (i = 0; i < 7; i++) {
+                    datos[i] = resultados.elementAt(0);
+                    resultados.remove(0);
+                    jTableArriendo.setValueAt(datos[i], j, i);
+                }
+                j++;
+            }
+        }
+        else {
+            this.jTableArriendo.setVisible(false);
+            this.jLabelAviso.setVisible(true);
+            this.jLabelAviso.setText("Usted no posee arriendos.");
+        }
+    }
+    
     private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
-        VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idCliente, conexion);
+        VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idEmpleado, conexion);
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
