@@ -53,6 +53,11 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
         });
 
         jButtonClientes.setText("Clientes");
+        jButtonClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonClientesMouseClicked(evt);
+            }
+        });
 
         jLabelEstado.setText("Estado de conexión");
 
@@ -128,7 +133,9 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButtonArriendosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArriendosActionPerformed
-        // TODO add your handling code here:
+        VistaArriendoEmpleado vista = new VistaArriendoEmpleado(this.idCliente, conexion);
+        vista.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonArriendosActionPerformed
 
     private void jButtonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistroMouseClicked
@@ -144,10 +151,14 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonPerfilMouseClicked
 
     private void jButtonArriendosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArriendosMouseClicked
+        
+    }//GEN-LAST:event_jButtonArriendosMouseClicked
+
+    private void jButtonClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClientesMouseClicked
         VistaClienteEmpleado vista = new VistaClienteEmpleado(this.idCliente, conexion);
         vista.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButtonArriendosMouseClicked
+    }//GEN-LAST:event_jButtonClientesMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
