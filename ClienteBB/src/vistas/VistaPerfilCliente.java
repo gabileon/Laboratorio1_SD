@@ -87,6 +87,11 @@ public final class VistaPerfilCliente extends javax.swing.JFrame {
                 jButtonVolverMouseClicked(evt);
             }
         });
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
 
         jLabelNombre.setText("jLabel10");
 
@@ -226,6 +231,10 @@ public final class VistaPerfilCliente extends javax.swing.JFrame {
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVolverActionPerformed
     
     public void mostrarInfo () throws RemoteException {
         Vector <String> resultados = new Vector();
