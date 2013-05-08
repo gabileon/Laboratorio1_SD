@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 
 public class Admin extends SQLQuery {
+
     
     
    public Vector<String> obtenerSucursalAdmin(int idAdmin){
@@ -57,7 +58,45 @@ public class Admin extends SQLQuery {
    
    }
     
-    
+    public Vector<String> obtenerEmpleadosAdmin(int idAdmin){
+          
+      Vector<String> resultado = new Vector();
+        try {
+                Class.forName(SQLQuery.getDriver());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        try {
+        conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
+          
+        this.consulta = conn.prepareStatement("SELECT sucursal.comuna, empleado.nombre , empleado.apellido, empleado.mail, empleado.telefono from Empleado, Sucursal where empleado.id_sucursal=sucursal.id_sucursal and sucursal.id_admin='"+idAdmin+"'");
+        this.datos = this.consulta.executeQuery();    
+        while (this.datos.next()) {
+                resultado.add(datos.getString("comuna"));
+                resultado.add(datos.getString("nombre"));
+                resultado.add(datos.getString("apellido"));
+                resultado.add(datos.getString("mail"));
+                resultado.add(datos.getString("telefono"));
+        }
+            
+        return resultado;
+
+         } catch (SQLException ex) {
+            try {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                conn.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+       
+    return resultado;
+   
+   
+   
+   }
+     
     
     
     

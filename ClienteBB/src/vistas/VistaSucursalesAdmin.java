@@ -180,6 +180,7 @@ public final class VistaSucursalesAdmin extends javax.swing.JFrame {
          Object datos[]=new Object[4];
         
         if (!resultados.isEmpty()) {
+             System.out.println("qe shusha");
             String dato;
             int i;
             int j;

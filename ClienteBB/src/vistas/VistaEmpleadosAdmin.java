@@ -4,19 +4,39 @@
  */
 package vistas;
 
+import clientebb.ConexionRMI;
+import java.rmi.RemoteException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Gabriela
  */
 public class VistaEmpleadosAdmin extends javax.swing.JFrame {
-
+    int idAdmin;
+    ConexionRMI conexion = new ConexionRMI();
     /**
      * Creates new form VistaEmpleadosAdmin
      */
     public VistaEmpleadosAdmin() {
         initComponents();
     }
-
+    
+    public VistaEmpleadosAdmin(int id, ConexionRMI obj) {
+        initComponents();
+        this.idAdmin = id;
+        this.conexion = obj;
+        try {
+            this.mostrarEmpleados();
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(VistaArriendoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,13 +48,14 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableEmpleados = new javax.swing.JTable();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Sucursales con sus empleados");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -42,32 +63,50 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Dirección Sucursal", "Nombre Empleado", "Apellido Empleado", "Mail", "Teléfono"
+                "Comuna Sucursal", "Nombre Empleado", "Apellido Empleado", "Mail", "Teléfono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
-        jTable1.getColumnModel().getColumn(3).setResizable(false);
-        jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(jTableEmpleados);
+        jTableEmpleados.getColumnModel().getColumn(0).setResizable(false);
+        jTableEmpleados.getColumnModel().getColumn(1).setResizable(false);
+        jTableEmpleados.getColumnModel().getColumn(2).setResizable(false);
+        jTableEmpleados.getColumnModel().getColumn(3).setResizable(false);
+        jTableEmpleados.getColumnModel().getColumn(4).setResizable(false);
+
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonVolverMouseClicked(evt);
+            }
+        });
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,11 +115,24 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
+    private void jButtonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVolverMouseClicked
+                                  
+        VistaMenuAdmin vista = new VistaMenuAdmin(this.idAdmin, conexion);
+        vista.setVisible(true);
+        dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVolverMouseClicked
 
     /**
      * @param args the command line arguments
@@ -124,8 +176,43 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableEmpleados;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void mostrarEmpleados()throws RemoteException {
+        
+          Vector <String> resultados = new Vector();
+        resultados = conexion.getServidor().obtenerEmpleadosAdmin(idAdmin);
+        Object datos[]=new Object[7];
+        
+        if (!resultados.isEmpty()) {
+            String dato;
+            int i;
+            int j;
+            int cont;
+            i = 0;
+            j = 0;
+            cont = 1;
+            while (!resultados.isEmpty()) {
+                for (i = 0; i < 5; i++) {
+                    datos[i] = resultados.elementAt(0);
+                    resultados.remove(0);
+                    jTableEmpleados.setValueAt(datos[i], j, i);
+                }
+                j++;
+            }
+        }
+        else {
+            this.jTableEmpleados.setVisible(false);
+          
+        }
+    }
+        
+        
+        
+        
+    }
+
