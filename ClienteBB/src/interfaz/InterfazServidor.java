@@ -19,4 +19,6 @@ public interface InterfazServidor extends Remote {
     public Vector<String> mostrarSucursales (int id) throws RemoteException;
 
     //public void desregistrarCliente(InterfazCliente cliente, String Nombre) throws RemoteException;
+
+  
 }
