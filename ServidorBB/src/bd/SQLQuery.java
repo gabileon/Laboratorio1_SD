@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.*;
 
 public class SQLQuery {
+    //heheh
     protected Connection conn;
     protected PreparedStatement consulta;
     protected ResultSet datos;
