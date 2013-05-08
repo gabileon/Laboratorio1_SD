@@ -27,11 +27,15 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
     VistaArriendoAdmin(int idAdmin, ConexionRMI conexion) {
             initComponents();
         
-        this.idAdmin = idAdmin;
+ /*       this.idAdmin = idAdmin;
         this.conexion = conexion;
               
-           // this.mostrarArriendoAdmin();
-   
+        try {
+            this.mostrarArriendoAdmin();
+        } catch (RemoteException ex) {
+            Logger.getLogger(VistaArriendoEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   */
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -149,7 +153,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
 
     
     
- /*  public void mostrarArriendoAdmin() {
+ /* public void mostrarArriendoAdmin()  throws RemoteException {
         
          Vector <String> resultados = new Vector();
         resultados = conexion.getServidor().mostrarArriendosAdmin(idAdmin);
@@ -177,7 +181,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
  
         }
     }
-    }
+   */ }
 
-  */
-}
+
+

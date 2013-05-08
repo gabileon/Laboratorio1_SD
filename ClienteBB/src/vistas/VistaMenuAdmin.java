@@ -66,20 +66,10 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         });
 
         jButtonEmpleados.setText("Empleados");
-        jButtonEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonEmpleadosMouseClicked(evt);
-            }
-        });
 
         jButtonClientes.setText("Clientes");
 
         jButtonArriendos.setText("Arriendos");
-        jButtonArriendos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonArriendosMouseClicked(evt);
-            }
-        });
 
         jButtonActivar.setText("Activar");
         jButtonActivar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,18 +172,6 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         vista.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonSucursalesMouseClicked
-
-    private void jButtonArriendosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArriendosMouseClicked
-        VistaArriendoAdmin vista = new VistaArriendoAdmin(this.idAdmin, conexion);
-        vista.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonArriendosMouseClicked
-
-    private void jButtonEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEmpleadosMouseClicked
-       VistaEmpleadosAdmin vista = new VistaEmpleadosAdmin(this.idAdmin, conexion);
-        vista.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonEmpleadosMouseClicked
 
     /**
      * @param args the command line arguments

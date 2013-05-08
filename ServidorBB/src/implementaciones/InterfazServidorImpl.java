@@ -134,22 +134,5 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         hayDatos = emp.obtenerArriendo(idEmpleado);
         return hayDatos;
     }
-    
-    //  public Vector<String> mostrarArriendosAdmin(int idAdmin)  throws RemoteException {
-      
-      //  Vector<String> hayDatos;
-      //  hayDatos = adm.obtenerArriendoAdmin(idAdmin);
-        //return hayDatos;
-      
-    //  }
-     public Vector<String> AdminEmpleado(int idAdmin) throws RemoteException {
-     
-     Vector<String> hayDatos;
-        hayDatos = adm.AdminEmpleado(idAdmin);
-        return hayDatos;
-     
-     
-     }
-    
 }
     
