@@ -31,7 +31,7 @@ public class Admin extends SQLQuery {
         try {
         conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
         
-        this.consulta = conn.prepareStatement("Select * From Sucursal");
+        this.consulta = conn.prepareStatement("Select * From Sucursal WHERE id_admin ='"+idAdmin+"'");
         this.datos = this.consulta.executeQuery();    
         while (this.datos.next()) {
                 resultado.add(datos.getString("comuna"));
