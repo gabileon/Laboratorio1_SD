@@ -176,8 +176,7 @@ public final class VistaSucursalesAdmin extends javax.swing.JFrame {
                            
         Vector <String> resultados = new Vector();
         resultados = conexion.getServidor().mostrarSucursales(idAdmin);
-        System.out.println(resultados.elementAt(3)); 
-         Object datos[]=new Object[4];
+        Object datos[]=new Object[4];
         
         if (!resultados.isEmpty()) {
             String dato;

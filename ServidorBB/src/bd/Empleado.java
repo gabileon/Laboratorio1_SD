@@ -113,5 +113,7 @@ public class Empleado extends SQLQuery{
        
     return resultado;
     }
+
+    
     
 }
