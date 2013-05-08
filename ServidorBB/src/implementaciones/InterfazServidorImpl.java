@@ -15,6 +15,7 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
     Usuario user = new Usuario();
     Cliente cli = new Cliente();
     Empleado emp = new Empleado();
+    Admin adm = new Admin();
 
     public InterfazServidorImpl() throws RemoteException{
         super();
@@ -120,11 +121,12 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
         return hayDatos;
     }
 
-    @Override
-    public Vector<String> mostrarSucursales (int id) throws RemoteException {
+
+     public Vector<String> mostrarSucursales (int id) throws RemoteException {
+
         Vector<String> hayDatos;
-        hayDatos = cli.obtenerArriendo(id);
-        return hayDatos;
+        hayDatos = adm.obtenerSucursalAdmin(id);
+     return hayDatos;
     }
      
     public Vector<String> EmpleadoArriendo (int idEmpleado) throws RemoteException {

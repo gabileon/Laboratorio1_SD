@@ -11,13 +11,20 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vistas.*;
 import java.util.*;
+import java.util.AbstractCollection;
 
 /**
  *
  * @author Gabriela
  */
-public class VistaSucursalesAdmin extends javax.swing.JFrame {
-  int idAdmin;
+public final class VistaSucursalesAdmin extends javax.swing.JFrame {
+
+    private static class Arraylist {
+
+        public Arraylist() {
+        }
+    }
+    int idAdmin;
     private ConexionRMI conexion = new ConexionRMI();
     /**
      * Creates new form VistaSucursalesAdmin
@@ -36,11 +43,8 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
             this.mostrarSucursal();
         } catch (RemoteException ex) {
             Logger.getLogger(VistaPerfilCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-        
-        
-        
+        }          
+                
     }
 
    
@@ -56,7 +60,7 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableSucursales = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Volver = new javax.swing.JButton();
@@ -65,29 +69,30 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
 
         jLabel1.setText("Las sucursales que existen son:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSucursales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Dirección", "Número", "Teléfono"
+                "Comuna", "Dirección", "Número", "Teléfono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setResizable(false);
-        jTable1.getColumnModel().getColumn(1).setResizable(false);
-        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jScrollPane1.setViewportView(jTableSucursales);
+        jTableSucursales.getColumnModel().getColumn(0).setResizable(false);
+        jTableSucursales.getColumnModel().getColumn(1).setResizable(false);
+        jTableSucursales.getColumnModel().getColumn(2).setResizable(false);
+        jTableSucursales.getColumnModel().getColumn(3).setResizable(false);
 
         jButton1.setText("Agregar Sucursal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -167,28 +172,38 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
     
     //
     public void mostrarSucursal () throws RemoteException {
-                 
-          
-        Vector <String> resultados = new Vector();
         
-       //resultados = conexion.getServidor().
-      
-        /*
-        //Se muestra en las etiquetas la información que corresponde
-        jLabelNombre.setText(resultados.elementAt(1));
-        jLabelApellido.setText(resultados.elementAt(2));
-        jLabelTelefono.setText(resultados.elementAt(3));
-        jLabelMail.setText(resultados.elementAt(4));
-        jLabelDireccion.setText(resultados.elementAt(5)+ " "+resultados.elementAt(6));
-       
-        //Se muestran los campos de la información de usuario
-        jLabelUser.setText(resultados2.elementAt(0));
-        jLabelPass.setText(resultados2.elementAt(1));
-    */
+                           
+        Vector <String> resultados = new Vector();
+        resultados = conexion.getServidor().mostrarSucursales(idAdmin);
+        System.out.println(resultados.elementAt(3)); 
+         Object datos[]=new Object[4];
+        
+        if (!resultados.isEmpty()) {
+            String dato;
+            int i;
+            int j;
+            int cont;
+            i = 0;
+            j = 0;
+            cont = 1;
+            while (!resultados.isEmpty()) {
+                for (i = 0; i < 4; i++) {
+                    datos[i] = resultados.elementAt(0);
+                    resultados.remove(0);
+                    jTableSucursales.setValueAt(datos[i], j, i);
+                }
+                j++;
+            }
+        }
+   
               }
     /**
      * @param args the command line arguments
      */
+    
+    
+    
     public static void main(String args[]) {
         /*
          * Set the Nimbus look and feel
@@ -233,6 +248,6 @@ public class VistaSucursalesAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableSucursales;
     // End of variables declaration//GEN-END:variables
 }

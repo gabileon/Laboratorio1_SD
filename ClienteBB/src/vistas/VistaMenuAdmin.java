@@ -54,6 +54,11 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         jLabel1.setText("Menú del Administrador");
 
         jButtonSucursales.setText("Sucursales");
+        jButtonSucursales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSucursalesMouseClicked(evt);
+            }
+        });
         jButtonSucursales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSucursalesActionPerformed(evt);
@@ -155,13 +160,18 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     private void jButtonSucursalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSucursalesActionPerformed
         // Botón que nos lleva a la vista que nos muestra todas las sucursales que hay
         //Además si desea agregar una sucursal debe entrar a esta opción    
-        VistaSucursalesAdmin vista = new VistaSucursalesAdmin(this.idAdmin, conexion);
-        vista.setVisible(true);
-        dispose();
+        
         
         
         
     }//GEN-LAST:event_jButtonSucursalesActionPerformed
+
+    private void jButtonSucursalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSucursalesMouseClicked
+     
+        VistaSucursalesAdmin vista = new VistaSucursalesAdmin(this.idAdmin, conexion);
+        vista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonSucursalesMouseClicked
 
     /**
      * @param args the command line arguments
