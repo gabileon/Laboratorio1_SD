@@ -162,6 +162,11 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
     
     }
     
+     public void crearEmpleado(int id, int idAdmin, String nombre, String apellido, String mail) throws RemoteException {
+     
+     emp.nuevoEmpleado(id, idAdmin, nombre, apellido, mail);
+     }
+ 
     
 }
     

@@ -113,5 +113,36 @@ public class Empleado extends SQLQuery{
        
     return resultado;
     }
-    
+
+    public void nuevoEmpleado(int id, int idAdmin, String nombre, String apellido, String mail) {
+          Vector<String> resultado = new Vector();
+        try {
+            Class.forName(SQLQuery.getDriver());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
+            
+            Statement st = conn.createStatement();
+            this.consulta = conn.prepareStatement("SELECT id_sucursal FROM sucursal WHERE id_admin='"+idAdmin+"'");
+            this.datos = this.consulta.executeQuery();
+            
+            int idSucursal = 0;
+            while (this.datos.next()) {
+                    idSucursal = datos.getInt("id_sucursal");
+                }
+            Statement sta = conn.createStatement();
+            sta.executeUpdate("INSERT INTO empleado (id_empleado, id_sucursal, nombre, apellido, telefono, email) VALUES ('"+id+"','"+idSucursal+"','"+nombre+"','"+apellido+"','"+mail+"')");
+        } catch (SQLException ex) {
+            try {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                conn.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+    }
 }
+    
+
