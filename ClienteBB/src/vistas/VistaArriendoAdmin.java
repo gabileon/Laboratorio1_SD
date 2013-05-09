@@ -27,7 +27,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
     VistaArriendoAdmin(int idAdmin, ConexionRMI conexion) {
             initComponents();
         
- /*       this.idAdmin = idAdmin;
+        this.idAdmin = idAdmin;
         this.conexion = conexion;
               
         try {
@@ -35,7 +35,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
         } catch (RemoteException ex) {
             Logger.getLogger(VistaArriendoEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-   */
+   
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +49,8 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableArriendosAdmin = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +62,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Película", "Director", "Fecha Arriendo", "Fecha Devolución"
+                "Nombre Arrendatario", "Apellido Arrendatario", "Película", "Director", "Fecha Arriendo", "Fecha Devolución"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -81,15 +83,35 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
 
         jLabel2.setText("Arriendos");
 
+        jButton1.setText("Volver");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,12 +119,26 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        VistaMenuAdmin vista = new VistaMenuAdmin(this.idAdmin, conexion);
+        vista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -146,18 +182,21 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableArriendosAdmin;
     // End of variables declaration//GEN-END:variables
 
     
     
- /* public void mostrarArriendoAdmin()  throws RemoteException {
+ public void mostrarArriendoAdmin()  throws RemoteException {
         
          Vector <String> resultados = new Vector();
         resultados = conexion.getServidor().mostrarArriendosAdmin(idAdmin);
-       Object datos[]=new Object[7];
+       resultados.elementAt(1);
+        Object datos[]=new Object[7];
         
         if (!resultados.isEmpty()) {
             String dato;
@@ -168,7 +207,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
             j = 0;
             cont = 1;
             while (!resultados.isEmpty()) {
-                for (i = 0; i < 7; i++) {
+                for (i = 0; i < 5; i++) {
                     datos[i] = resultados.elementAt(0);
                     resultados.remove(0);
                     jTableArriendosAdmin.setValueAt(datos[i], j, i);
@@ -181,7 +220,10 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
  
         }
     }
-   */ }
+  
+
+  
+ }
 
 
 

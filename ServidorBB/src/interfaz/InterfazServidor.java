@@ -21,4 +21,5 @@ public interface InterfazServidor extends Remote{
     public Vector<String> mostrarSucursales (int id) throws RemoteException;
     public Vector<String> obtenerEmpleadosAdmin (int id) throws RemoteException;
     public Vector<String> obtenerClientesAdmin(int idAdmin)  throws RemoteException;
+    public Vector<String> mostrarArriendosAdmin(int idAdmin)  throws RemoteException;
 }

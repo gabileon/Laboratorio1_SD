@@ -85,6 +85,11 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         });
 
         jButtonArriendos.setText("Arriendos");
+        jButtonArriendos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonArriendosMouseClicked(evt);
+            }
+        });
 
         jButtonActivar.setText("Activar");
         jButtonActivar.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +217,14 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonClientesMouseClicked
+
+    private void jButtonArriendosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArriendosMouseClicked
+        VistaArriendoAdmin vista= new VistaArriendoAdmin(this.idAdmin, conexion);
+        vista.setVisible(true);
+        dispose();
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonArriendosMouseClicked
 
     /**
      * @param args the command line arguments

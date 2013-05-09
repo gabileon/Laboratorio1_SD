@@ -154,6 +154,14 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
     
     }
     
+    public Vector<String> mostrarArriendosAdmin(int idAdmin)  throws RemoteException{
+    
+           Vector<String> hayDatos;
+           hayDatos = adm.obtenerArriendosAdmin(idAdmin);
+     return hayDatos;
+    
+    }
+    
     
 }
     

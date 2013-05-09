@@ -131,7 +131,7 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
                                   
         VistaMenuAdmin vista = new VistaMenuAdmin(this.idAdmin, conexion);
         vista.setVisible(true);
-        dispose();// TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButtonVolverMouseClicked
 
     /**
