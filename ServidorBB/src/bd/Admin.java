@@ -98,7 +98,7 @@ public class Admin extends SQLQuery {
    }
 
     public Vector<String> obtenerClientesAdmin(int idAdmin) {
-        System.out.println("dsdsds");
+       
           Vector<String> resultado = new Vector();
         try {
                 Class.forName(SQLQuery.getDriver());
@@ -108,7 +108,7 @@ public class Admin extends SQLQuery {
         try {
         conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
          
-        this.consulta = conn.prepareStatement("SELECT sucursal.comuna, cliente.nombre , cliente.apellido, cliente.telefono, cliente.email, from Cliente, Sucursal where cliente.id_sucursal=sucursal.id_sucursal and sucursal.id_admin='"+idAdmin+"'");
+        this.consulta = conn.prepareStatement("SELECT sucursal.comuna, cliente.nombre , cliente.apellido, cliente.telefono, cliente.email from Cliente, Sucursal where cliente.id_sucursal=sucursal.id_sucursal and sucursal.id_admin='"+idAdmin+"'");
         this.datos = this.consulta.executeQuery();    
         while (this.datos.next()) {
                 resultado.add(datos.getString("comuna"));
