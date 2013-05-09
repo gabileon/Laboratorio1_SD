@@ -30,7 +30,7 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
         this.conexion = obj;
         try {
             this.mostrarEmpleados();
-            
+                    
         } catch (RemoteException ex) {
             Logger.getLogger(VistaArriendoCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -175,17 +175,12 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonVolver;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableEmpleados;
-    // End of variables declaration//GEN-END:variables
-
+    
     private void mostrarEmpleados()throws RemoteException {
         
           Vector <String> resultados = new Vector();
         resultados = conexion.getServidor().obtenerEmpleadosAdmin(idAdmin);
+        
         Object datos[]=new Object[7];
         
         if (!resultados.isEmpty()) {
@@ -210,6 +205,17 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
           
         }
     }
+    
+    
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableEmpleados;
+    // End of variables declaration//GEN-END:variables
+
+    
         
         
         
