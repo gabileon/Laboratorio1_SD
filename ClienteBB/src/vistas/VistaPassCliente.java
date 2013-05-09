@@ -12,6 +12,7 @@ public class VistaPassCliente extends javax.swing.JFrame {
     private ConexionRMI conexion = new ConexionRMI();
     
     public VistaPassCliente() {
+         this.setLocationRelativeTo(null);
         initComponents();
     }
 

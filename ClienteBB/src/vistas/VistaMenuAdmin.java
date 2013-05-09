@@ -21,6 +21,7 @@ public class VistaMenuAdmin extends javax.swing.JFrame {
     ConexionRMI conexion = new ConexionRMI();
     
     public VistaMenuAdmin() {
+          this.setLocationRelativeTo(null);
         initComponents();
     }
     

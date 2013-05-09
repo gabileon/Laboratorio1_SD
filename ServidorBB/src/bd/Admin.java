@@ -138,7 +138,7 @@ public class Admin extends SQLQuery {
     }
 
     public Vector<String> obtenerArriendosAdmin(int idAdmin) {
-        
+           System.out.println("sali");
            Vector<String> resultado = new Vector();
         try {
                 Class.forName(SQLQuery.getDriver());
@@ -147,18 +147,19 @@ public class Admin extends SQLQuery {
             }
         try {
         conn = DriverManager.getConnection(SQLQuery.getUrl(), SQLQuery.getUser(), SQLQuery.getPass());
-         
-        this.consulta = conn.prepareStatement("SELECT cliente.nombre, cliente.apellido, pelicula.nombre, director.nombre, arriendo.fecha_arriendo, arriendo.fecha_entrega from Cliente, Sucursal, Arriendo, Pelicula, Director where pelicula.id_director = director.id_director and cliente.id_sucursal=sucursal.id_sucursal and arriendo.id_cliente=cliente.id_cliente and arriendo.id_pelicula = pelicula.id_pelicula and sucursal.id_admin='"+idAdmin+"'");
+              
+        this.consulta = conn.prepareStatement("SELECT sucursal.comuna, cliente.nombre, cliente.apellido, pelicula.nombre, director.nombre, arriendo.fecha_arriendo, arriendo.fecha_entrega from Cliente, Sucursal, Arriendo, Pelicula, Director where pelicula.id_director = director.id_director and cliente.id_sucursal=sucursal.id_sucursal and arriendo.id_cliente=cliente.id_cliente and arriendo.id_pelicula = pelicula.id_pelicula and sucursal.id_admin='"+idAdmin+"'");
         this.datos = this.consulta.executeQuery();    
         while (this.datos.next()) {
-                resultado.add(datos.getString("nombre"));
-                resultado.add(datos.getString("apellido"));
-                resultado.add(datos.getString("nombre"));
-                resultado.add(datos.getString("director"));
-                resultado.add(datos.getString("fecha_arriendo"));
-                resultado.add(datos.getString("fecha_"));
+                resultado.add(datos.getString(1));
+                resultado.add(datos.getString(2));
+                resultado.add(datos.getString(3));
+                resultado.add(datos.getString(4));
+                resultado.add(datos.getString(5));
+                resultado.add(datos.getString(6));
+                resultado.add(datos.getString(7));
         }
-            
+    
         return resultado;
 
          } catch (SQLException ex) {

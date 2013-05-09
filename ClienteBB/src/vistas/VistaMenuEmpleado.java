@@ -7,6 +7,7 @@ public class VistaMenuEmpleado extends javax.swing.JFrame {
     ConexionRMI conexion = new ConexionRMI();
     
     public VistaMenuEmpleado() {
+         this.setLocationRelativeTo(null);
         initComponents();
     }
     

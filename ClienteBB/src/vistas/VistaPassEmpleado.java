@@ -12,6 +12,7 @@ public class VistaPassEmpleado extends javax.swing.JFrame {
     private ConexionRMI conexion = new ConexionRMI();
     
     public VistaPassEmpleado() {
+          this.setLocationRelativeTo(null);
         initComponents();
     }
 

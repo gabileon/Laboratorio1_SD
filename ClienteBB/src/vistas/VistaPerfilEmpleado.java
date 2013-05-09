@@ -13,6 +13,7 @@ public class VistaPerfilEmpleado extends javax.swing.JFrame {
     private ConexionRMI conexion = new ConexionRMI();
 
     public VistaPerfilEmpleado() {
+         this.setLocationRelativeTo(null);
         initComponents();
     }
 

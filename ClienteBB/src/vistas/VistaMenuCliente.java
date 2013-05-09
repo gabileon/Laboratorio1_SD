@@ -11,6 +11,7 @@ public class VistaMenuCliente extends javax.swing.JFrame {
     
     public VistaMenuCliente() {
         initComponents();
+              this.setLocationRelativeTo(null);
     }
     
     public VistaMenuCliente(int id, ConexionRMI obj) {

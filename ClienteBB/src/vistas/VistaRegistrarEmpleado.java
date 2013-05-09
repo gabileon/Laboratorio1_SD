@@ -11,6 +11,7 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
     ConexionRMI conexion = new ConexionRMI();
 
     public VistaRegistrarEmpleado() {
+         this.setLocationRelativeTo(null);
         initComponents();
     }
     

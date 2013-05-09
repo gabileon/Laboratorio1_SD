@@ -11,6 +11,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private ConexionRMI conexion = new ConexionRMI();
     
     public VistaPrincipal() {
+        
+      this.setLocationRelativeTo(null);
         initComponents();
     }
 

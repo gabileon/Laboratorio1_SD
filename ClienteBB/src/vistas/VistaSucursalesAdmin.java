@@ -28,7 +28,9 @@ public final class VistaSucursalesAdmin extends javax.swing.JFrame {
     private ConexionRMI conexion = new ConexionRMI();
     /**
      * Creates new form VistaSucursalesAdmin
-     */    public VistaSucursalesAdmin() {
+     */    
+    public VistaSucursalesAdmin() {
+          this.setLocationRelativeTo(null);
         initComponents();
     }
 

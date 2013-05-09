@@ -11,6 +11,7 @@ public class VistaClienteEmpleado extends javax.swing.JFrame {
     ConexionRMI conexion = new ConexionRMI();
     
     public VistaClienteEmpleado() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

@@ -21,6 +21,7 @@ public class VistaEmpleadosAdmin extends javax.swing.JFrame {
      * Creates new form VistaEmpleadosAdmin
      */
     public VistaEmpleadosAdmin() {
+       this.setLocationRelativeTo(null);
         initComponents();
     }
     

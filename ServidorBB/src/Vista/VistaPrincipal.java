@@ -16,6 +16,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
      * Creates new form VistaPrincipal
      */
     public VistaPrincipal() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

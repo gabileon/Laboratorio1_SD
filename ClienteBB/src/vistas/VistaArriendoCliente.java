@@ -11,6 +11,7 @@ public class VistaArriendoCliente extends javax.swing.JFrame {
     ConexionRMI conexion = new ConexionRMI();
     
     public VistaArriendoCliente() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

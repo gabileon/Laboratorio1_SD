@@ -21,6 +21,7 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
      * Creates new form VistaArriendoAdmin
      */
     public VistaArriendoAdmin() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -56,17 +57,17 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
 
         jTableArriendosAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre Arrendatario", "Apellido Arrendatario", "Película", "Director", "Fecha Arriendo", "Fecha Devolución"
+                "Comuna Sucursal", "Nombre Arrendatario", "Apellido Arrendatario", "Película", "Director", "Fecha Arriendo", "Fecha Devolución"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -80,8 +81,9 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
         jTableArriendosAdmin.getColumnModel().getColumn(3).setResizable(false);
         jTableArriendosAdmin.getColumnModel().getColumn(4).setResizable(false);
         jTableArriendosAdmin.getColumnModel().getColumn(5).setResizable(false);
+        jTableArriendosAdmin.getColumnModel().getColumn(6).setResizable(false);
 
-        jLabel2.setText("Arriendos");
+        jLabel2.setText("Arriendos por cada Sucursal");
 
         jButton1.setText("Volver");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,18 +101,18 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(237, 237, 237)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(83, 83, 83)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,10 +123,10 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,10 +197,11 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
         
          Vector <String> resultados = new Vector();
         resultados = conexion.getServidor().mostrarArriendosAdmin(idAdmin);
-       resultados.elementAt(1);
+      
         Object datos[]=new Object[7];
         
         if (!resultados.isEmpty()) {
+           
             String dato;
             int i;
             int j;
@@ -207,8 +210,8 @@ public class VistaArriendoAdmin extends javax.swing.JFrame {
             j = 0;
             cont = 1;
             while (!resultados.isEmpty()) {
-                for (i = 0; i < 5; i++) {
-                    datos[i] = resultados.elementAt(0);
+                for (i = 0; i < 7; i++) {
+                 datos[i] = resultados.elementAt(0);
                     resultados.remove(0);
                     jTableArriendosAdmin.setValueAt(datos[i], j, i);
                 }
