@@ -10,6 +10,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 public class InterfazServidorImpl extends UnicastRemoteObject implements InterfazServidor {
     private ArrayList clientes = new ArrayList();
     Usuario user = new Usuario();
@@ -143,6 +145,14 @@ public class InterfazServidorImpl extends UnicastRemoteObject implements Interfa
      return hayDatos;
     }
     
+    public Vector<String> obtenerClientesAdmin(int idAdmin)  throws RemoteException {
+    
+        Vector<String> hayDatos;
+        hayDatos = adm.obtenerClientesAdmin(idAdmin);
+     return hayDatos;
+    
+    
+    }
     
     
 }

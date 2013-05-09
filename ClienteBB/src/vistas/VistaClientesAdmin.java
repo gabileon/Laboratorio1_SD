@@ -4,17 +4,41 @@
  */
 package vistas;
 
+import clientebb.ConexionRMI;
+import java.rmi.RemoteException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Gabriela
  */
 public class VistaClientesAdmin extends javax.swing.JFrame {
 
+    int idAdmin;
+    ConexionRMI conexion = new ConexionRMI();
     /**
      * Creates new form VistaClientesAdmin
      */
     public VistaClientesAdmin() {
         initComponents();
+    }
+
+    VistaClientesAdmin(int idAdmin, ConexionRMI conexion) {
+    
+        initComponents();
+        this.idAdmin = idAdmin;
+        this.conexion = conexion;
+        try {
+            this.mostrarClientes();
+                    
+        } catch (RemoteException ex) {
+            Logger.getLogger(VistaArriendoCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
     }
 
     /**
@@ -28,13 +52,13 @@ public class VistaClientesAdmin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Clientes por sucursal:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -45,8 +69,8 @@ public class VistaClientesAdmin extends javax.swing.JFrame {
                 "Sucursal Comuna", "Nombre", "Apellido", "Teléfono", "Email"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(jTableClientes);
+        jTableClientes.getColumnModel().getColumn(4).setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,9 +138,46 @@ public class VistaClientesAdmin extends javax.swing.JFrame {
             }
         });
     }
+    
+      private void mostrarClientes()throws RemoteException {
+      
+     Vector <String> resultados = new Vector();
+        resultados = conexion.getServidor().obtenerClientesAdmin(idAdmin);
+        
+        Object datos[]=new Object[7];
+        
+        if (!resultados.isEmpty()) {
+            String dato;
+            int i;
+            int j;
+            int cont;
+            i = 0;
+            j = 0;
+            cont = 1;
+            while (!resultados.isEmpty()) {
+                for (i = 0; i < 5; i++) {
+                    datos[i] = resultados.elementAt(0);
+                    resultados.remove(0);
+                    jTableClientes.setValueAt(datos[i], j, i);
+                }
+                j++;
+            }
+        }
+        else {
+            this.jTableClientes.setVisible(false);
+          
+        }
+          
+      
+      
+      
+      }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableClientes;
     // End of variables declaration//GEN-END:variables
+
+   
 }
