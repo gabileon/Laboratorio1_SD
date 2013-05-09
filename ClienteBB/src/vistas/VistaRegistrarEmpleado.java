@@ -292,13 +292,13 @@ public class VistaRegistrarEmpleado extends javax.swing.JFrame {
             } catch (RemoteException ex) {
                 Logger.getLogger(VistaRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(this, "Se ha cambiado la contraseña exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Se ha ingresado un nuevo cliente exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             VistaMenuEmpleado vista = new VistaMenuEmpleado(this.idEmpleado, conexion);
             vista.setVisible(true);
             dispose();
         }
         else {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden, vuelva a ingresarlas.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Intente de Nuevo.", "Mensaje", JOptionPane.ERROR_MESSAGE);
             jPasswordFieldPass1.setText("");
             jPasswordFieldPass2.setText("");
         }

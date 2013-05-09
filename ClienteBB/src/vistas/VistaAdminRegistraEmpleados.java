@@ -25,11 +25,11 @@ public class VistaAdminRegistraEmpleados extends javax.swing.JFrame {
         initComponents();
     }
 
-    VistaAdminRegistraEmpleados(int idAdmin, ConexionRMI conexion) {
+    public VistaAdminRegistraEmpleados(int idAdmin, ConexionRMI conexion) {
      
         this.idAdmin = idAdmin;
         this.conexion = conexion;
-        
+   /*
         jTextFieldUsuario.setText("");
         jPasswordFieldPass1.setText("");
         jPasswordFieldPass2.setText("");
@@ -37,7 +37,7 @@ public class VistaAdminRegistraEmpleados extends javax.swing.JFrame {
         jTextFieldTelefono.setText("");
         jTextFieldApellido.setText("");
         jTextFieldNombre.setText("");
-        
+     */   
         
     }
 
@@ -248,9 +248,40 @@ public class VistaAdminRegistraEmpleados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
+     private void nuevoEmpleado() {
+        String pass1 = this.jPasswordFieldPass1.getText();
+        String pass2 = this.jPasswordFieldPass2.getText();
+        
+        if (pass1.equals(pass2)) {
+            String user = this.jTextFieldUsuario.getText();
+            try {
+                String rol = "2";
+                conexion.getServidor().nuevoUser(user, pass1, rol);
+                int id = conexion.getServidor().obtenerId(user, pass1);
+                
+                String apellido = jTextFieldApellido.getText();
+                String mail = jTextFieldMail.getText();
+                String nombre = jTextFieldNombre.getText();
+                
+                
+                conexion.getServidor().crearEmpleado(id, idAdmin, nombre, apellido,  mail );
+            } catch (RemoteException ex) {
+                Logger.getLogger(VistaAdminRegistraEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Se ha ingresado un nuevo empleado exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            VistaMenuAdmin vista = new VistaMenuAdmin(this.idAdmin, conexion);
+            vista.setVisible(true);
+            dispose();
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Intente otra vez.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            jPasswordFieldPass1.setText("");
+            jPasswordFieldPass2.setText("");
+        }
+        
+    }
+       
     public static void main(String args[]) {
         /*
          * Set the Nimbus look and feel
@@ -312,38 +343,6 @@ public class VistaAdminRegistraEmpleados extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void nuevoEmpleado() {
-        String pass1 = this.jPasswordFieldPass1.getText();
-        String pass2 = this.jPasswordFieldPass2.getText();
-        
-        if (pass1.equals(pass2)) {
-            String user = this.jTextFieldUsuario.getText();
-            try {
-                String rol = "3";
-                conexion.getServidor().nuevoUser(user, pass1, rol);
-                int id = conexion.getServidor().obtenerId(user, pass1);
-                
-                String apellido = jTextFieldApellido.getText();
-                String mail = jTextFieldMail.getText();
-                String nombre = jTextFieldNombre.getText();
-                
-                
-                conexion.getServidor().crearEmpleado(id, idAdmin, nombre, apellido,  mail );
-            } catch (RemoteException ex) {
-                Logger.getLogger(VistaRegistrarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JOptionPane.showMessageDialog(this, "Se ha ingresado un nuevo empleado exitosamente.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            VistaMenuAdmin vista = new VistaMenuAdmin(this.idAdmin, conexion);
-            vista.setVisible(true);
-            dispose();
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Intente otra vez.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-            jPasswordFieldPass1.setText("");
-            jPasswordFieldPass2.setText("");
-        }
-        
-    }
-       
+   
     }
 
